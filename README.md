@@ -19,7 +19,7 @@ event data model.
 - mlcModuleExample.conf
 - fdeep_model.json (CNN model architecture)
 
-##Prerequisites
+## Prerequisites
 
 A working version of Falaise, and the installation of the header-only library frugally-deep.
 
@@ -35,7 +35,7 @@ $ cmake ..
 $ make
 ...
 ```
-##Usage
+## Usage
 ``` console
 $ flreconstruct -i input.brio -p mlcModuleExample.conf -o output.brio
 ```
