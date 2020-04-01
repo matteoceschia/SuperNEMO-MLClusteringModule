@@ -1,0 +1,31 @@
+import numpy as np
+from sklearn.cluster import AgglomerativeClustering
+import emb_1
+
+def multiply(a,b):
+    print("Will compute", a, "times", b)
+    c = 0
+    for i in range(0, a):
+        c = c + b
+    return c
+
+def cluster(nclus, rows, cols):
+    print("Number of clusters", emb_1.numclus())
+    #s=rows.shape
+#   firstRow = rows[0,:]
+    print("array_tutorial - python")
+    print(nclus)
+    print(rows)
+    print(cols)
+    print("")
+    coord = np.array(list(zip(rows, cols)))
+    print(coord)
+#    X = np.array([[1, 2], [1, 4], [1, 0], [4, 2], [4, 4], [1, 0]])
+    agg = AgglomerativeClustering(nclus, linkage='single').fit(coord)
+    labels = agg.labels_
+    print("Labels are: ", labels)
+    print("Type ", type(labels))
+    r = np.array([1, 5, 6]).astype(dtype=np.float128)
+#    print(labels.shape)
+    return labels.astype(dtype=np.float128)
+#    return r
