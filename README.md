@@ -35,3 +35,7 @@ $ cmake ..
 $ make
 ...
 ```
+##Usage
+``` console
+$ flreconstruct -i input.brio -p mlcModuleExample.conf -o output.brio
+```

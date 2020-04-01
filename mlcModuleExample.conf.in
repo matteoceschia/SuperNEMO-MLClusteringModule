@@ -1,18 +1,17 @@
-# - Configuration
-#@description Simple pipeline using a chain
-#@key_label   "name"
-#@meta_label  "type"
-
-# - Module load section
-# only the custom module ImageSegmentation needs loading
-# the rest are known system modules. either known to
-# the dpp namespace or
-# the snemo::processing namespace
+#@key_label  "name"
+#@meta_label "type"
 [name="flreconstruct.plugins" type="flreconstruct::section"]
-plugins : string[1] = "MLClustering"
-MLClustering.directory : string = "@PROJECT_BINARY_DIR@"
-
-# Must define "pipeline" as this is the module flreconstruct will use
-# Define the modules in the pipeline:
-[name="pipeline" type="mlclustering_module"]
-# no parameter
+plugins : string[3] = "MLClustering" \
+                      "TrackFit" \
+                      "Falaise_TrackFit"
+MLClustering.directory : string = "/Users/matteoceschia/MLC/build"
+[name="pipeline" type="dpp::chain_module"]
+modules : string[3] = \
+  "CalibrateTracker" \
+  "CalibrateCalorimeters" \
+  "mlclustering_module"
+[name="CalibrateTracker" type="snemo::processing::mock_tracker_s2c_module"]
+[name="CalibrateCalorimeters" type="snemo::processing::mock_calorimeter_s2c_module"]
+[name="mlclustering_module" type="mlclustering_module"]
+TPC.processing_prompt_hits  : boolean = true
+TPC.processing_delayed_hits : boolean = false
