@@ -142,6 +142,10 @@ dpp::base_module::process_status mlclustering_module::process(datatools::things 
 	fdeep::tensor input_left = fdeep::tensor(fdeep::tensor_shape(113, 9, 1), 0);
 	fdeep::tensor input_right = fdeep::tensor(fdeep::tensor_shape(113, 9, 1), 0);
 
+	std::cout<<"__________-_------__--_----_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_____________"<<std::endl;
+	std::cout<<"PORCODIO L"<<fdeep::show_tensor(input_left)<<std::endl;
+	std::cout<<"PORCODIO R"<<fdeep::show_tensor(input_right)<<std::endl;
+
   // geiger hits to image
   bool delayed = false;
   MetaInfo mi;
@@ -194,6 +198,7 @@ dpp::base_module::process_status mlclustering_module::process(datatools::things 
   //  std::cout << "In process: gg_data size=" << gg_data.size() << std::endl;
   //  std::cout << "In process: gg_data_delayed size=" << gg_data_delayed.size() << std::endl;
   // std::cout <<  "SHOW TENSOR " << fdeep::show_tensor(input_left)<<std::endl;
+
 	//number of clusters
   int nClus_left;
 	//initiate C++ labels
@@ -203,7 +208,6 @@ dpp::base_module::process_status mlclustering_module::process(datatools::things 
 	if (rows_left.empty()){nClus_left=0;}
 	else if (rows_left.size()==1){nClus_left=1;}
 	else if (rows_left.size()>1){
-
       // std::cout <<  "SHOW TENSOR " << fdeep::show_tensor(input_left)<<std::endl;
 			//compute result from CNN
       auto result = model.predict({input_left});
@@ -298,7 +302,6 @@ dpp::base_module::process_status mlclustering_module::process(datatools::things 
 	if (rows_right.empty()){nClus_right=0;}
 	else if (rows_right.size()==1){nClus_right=1;}
 	else if (rows_right.size()>1){
-
 			//compute result from CNN
       auto result = model.predict({input_right});
 
@@ -372,7 +375,7 @@ dpp::base_module::process_status mlclustering_module::process(datatools::things 
 			//Py_DECREF(pLabels);
 		  //Py_DECREF(pArrayRows);
 			//Py_DECREF(pArrayColumns);
-			Py_XDECREF(pFunc);
+			Py_DECREF(pFunc);
 			Py_DECREF(pModule);
 		  }
 	}
@@ -405,12 +408,12 @@ dpp::base_module::process_status mlclustering_module::process(datatools::things 
 
 ///////////
 
-		std::ofstream output_file("./example.txt");
-		std::vector<int> ll_copy;
-		for(int i=0; i<ll.size();i++){
-			ll_copy.push_back(int(rr.at(i)));
-			output_file << ll_copy[i] << std::endl;
-		}
+		// std::ofstream output_file("./example.txt");
+		// std::vector<int> ll_copy;
+		// for(int i=0; i<ll.size();i++){
+			// ll_copy.push_back(int(rr.at(i)));
+			// output_file << ll_copy[i] << std::endl;
+		// }
 
 		//for (int n=0; n<vsize; n++)
 		//	{

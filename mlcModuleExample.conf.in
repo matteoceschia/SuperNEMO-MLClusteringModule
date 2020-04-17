@@ -4,7 +4,7 @@
 plugins : string[3] = "MLClustering" \
                       "TrackFit" \
                       "Falaise_TrackFit"
-MLClustering.directory : string = "/Users/matteoceschia/MLC/build"
+MLClustering.directory : string = "@PROJECT_BINARY_DIR@"
 [name="pipeline" type="dpp::chain_module"]
 modules : string[3] = \
   "CalibrateTracker" \
