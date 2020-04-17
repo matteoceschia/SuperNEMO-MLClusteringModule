@@ -142,10 +142,6 @@ dpp::base_module::process_status mlclustering_module::process(datatools::things 
 	fdeep::tensor input_left = fdeep::tensor(fdeep::tensor_shape(113, 9, 1), 0);
 	fdeep::tensor input_right = fdeep::tensor(fdeep::tensor_shape(113, 9, 1), 0);
 
-	std::cout<<"__________-_------__--_----_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_____________"<<std::endl;
-	std::cout<<"PORCODIO L"<<fdeep::show_tensor(input_left)<<std::endl;
-	std::cout<<"PORCODIO R"<<fdeep::show_tensor(input_right)<<std::endl;
-
   // geiger hits to image
   bool delayed = false;
   MetaInfo mi;
